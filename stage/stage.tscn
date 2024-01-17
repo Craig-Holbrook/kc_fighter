@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qcdkd7pf0qa7"]
 
 [ext_resource type="Script" path="res://stage/stage.gd" id="1_0ot5n"]
-[ext_resource type="PackedScene" uid="uid://rqo5n0fl3cvi" path="res://player/player.tscn" id="2_q4w8h"]
+[ext_resource type="PackedScene" uid="uid://bjc58ru266ooi" path="res://player/player.tscn" id="2_q4w8h"]
 
 [sub_resource type="Gradient" id="Gradient_7bw18"]
 interpolation_mode = 2
@@ -53,3 +53,4 @@ text = "right hp"
 horizontal_alignment = 2
 
 [node name="Player" parent="." instance=ExtResource("2_q4w8h")]
+position = Vector2(56, 1)
