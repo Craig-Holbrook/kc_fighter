@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://qcdkd7pf0qa7"]
+
+[ext_resource type="Script" path="res://stage/stage.gd" id="1_0ot5n"]
+[ext_resource type="PackedScene" uid="uid://rqo5n0fl3cvi" path="res://player/player.tscn" id="2_q4w8h"]
+
+[sub_resource type="Gradient" id="Gradient_7bw18"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.485915, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.164706, 0.411765, 0.494118, 0.656485, 0.271921, 0.254374, 0.815686)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opl64"]
+gradient = SubResource("Gradient_7bw18")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_0ot5n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(0, 0, 16, 0, 16, 128, 304, 128, 304, 0, 320, 0, 320, 184, 0, 184)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+texture = SubResource("GradientTexture2D_opl64")
+texture_offset = Vector2(-10, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+
+[node name="LeftHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+text = "left hp"
+vertical_alignment = 1
+
+[node name="RightHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
+layout_mode = 2
+text = "right hp"
+horizontal_alignment = 2
+
+[node name="Player" parent="." instance=ExtResource("2_q4w8h")]
