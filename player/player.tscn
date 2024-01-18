@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=10 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Texture2D" uid="uid://2mduhi2bdwkg" path="res://icon.svg" id="1_2xoav"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
+[ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
+[ext_resource type="Script" path="res://player/player_states/player_walking.gd" id="4_f4542"]
+[ext_resource type="Script" path="res://player/player_states/player_idle.gd" id="4_mvfga"]
+[ext_resource type="Script" path="res://player/player_states/player_jump.gd" id="4_tx1r5"]
+[ext_resource type="Script" path="res://player/player_states/player_jump_squat.gd" id="7_xhjwr"]
+[ext_resource type="Script" path="res://player/player_states/player_landing.gd" id="8_yss7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8exgp"]
 radius = 15.0
@@ -17,3 +23,22 @@ texture = ExtResource("1_2xoav")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_8exgp")
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_57yuj")
+initial_state = NodePath("PlayerIdle")
+
+[node name="PlayerJump" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_tx1r5")
+
+[node name="PlayerWalking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_f4542")
+
+[node name="PlayerIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("4_mvfga")
+
+[node name="PlayerJumpSquat" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_xhjwr")
+
+[node name="PlayerLanding" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_yss7n")
