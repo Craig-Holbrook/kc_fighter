@@ -7,8 +7,8 @@ var frames_left = 5
 
 
 func enter():
-	player.velocity.x = 0
 	#play landing animation
+	player.velocity.x = 0
 	pass
 
 
