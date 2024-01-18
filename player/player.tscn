@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://bjc58ru266ooi"]
 
-
 [ext_resource type="Texture2D" uid="uid://2mduhi2bdwkg" path="res://icon.svg" id="1_2xoav"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]

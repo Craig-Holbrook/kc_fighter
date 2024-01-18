@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://0cqjtcvn1qfe"]
+
+[ext_resource type="FontFile" uid="uid://mvka7kehldco" path="res://assets/ui_elements/Protos-D1nx.ttf" id="1_7t634"]
+[ext_resource type="FontFile" uid="uid://bgfyo7ygs1sbk" path="res://assets/ui_elements/Bulletprooffont.ttf" id="1_w13bk"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_pressed_color = Color(0.647059, 0, 0, 1)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_7t634")
+Label/colors/font_color = Color(0.647059, 0, 0, 1)
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_w13bk")

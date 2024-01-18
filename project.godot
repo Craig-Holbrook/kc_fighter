@@ -31,6 +31,10 @@ project/assembly_name="kc_fighter"
 
 enabled=PackedStringArray("res://addons/format_on_save/plugin.cfg")
 
+[gui]
+
+theme/custom="res://assets/ui_elements/default_theme.tres"
+
 [layer_names]
 
 2d_physics/layer_1="Stage"

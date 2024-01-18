@@ -2,12 +2,12 @@ extends State
 class_name PlayerWalking
 
 const SPEED = 150
-var player: CharacterBody2D
+@onready var player: CharacterBody2D = $"../.."
 
 
 func enter():
 	#play walking animation
-	player = get_parent().get_parent()
+	pass
 
 
 func update(_delta: float):
