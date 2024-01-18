@@ -53,4 +53,4 @@ layout_mode = 2
 horizontal_alignment = 2
 
 [node name="Player" parent="." instance=ExtResource("2_q4w8h")]
-position = Vector2(56, 1)
+position = Vector2(56, 128)
