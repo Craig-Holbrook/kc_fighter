@@ -1,11 +1,21 @@
 extends CharacterBody2D
 
+signal health_changed
+
+@export var health: int = 3:
+	set(value):
+		health = value
+		health_changed.emit(health, 1)
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+
+func _ready() -> void:
+	health_changed.emit(health, 1)
 
 
 func _physics_process(delta):
