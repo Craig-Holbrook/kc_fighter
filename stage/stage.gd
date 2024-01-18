@@ -5,13 +5,23 @@ extends Node2D
 @onready var left_health_number_label: Label = %LeftHealthNumberLabel
 @onready var right_health_number_label: Label = %RightHealthNumberLabel
 @onready var player: CharacterBody2D = $Player
+@onready var ready_go: ColorRect = %ReadyGo
+@onready var ready_go_label: Label = %ReadyGoLabel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(Color.BLACK)
 	polygon_2d.polygon = collision_polygon_2d.polygon
 	update_health_label(player.health, 1)
 	player.health_changed.connect(update_health_label)
+	get_tree().paused = true
+	ready_go.visible = true
+	animation_player.play("readygo")
+	await animation_player.animation_finished
+	get_tree().paused = false
+	ready_go.visible = false
 
 
 func update_health_label(new_health: int, player_id: int):
-	left_health_number_label.text = "health: " + str(new_health)
+	left_health_number_label.text = " " + str(new_health)

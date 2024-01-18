@@ -1,10 +1,13 @@
 extends State
 class_name PlayerLanding
 
+@onready var player: CharacterBody2D = $"../.."
+
 var frames_left = 5
 
 
 func enter():
+	player.velocity.x = 0
 	#play landing animation
 	pass
 
