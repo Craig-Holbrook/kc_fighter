@@ -2,12 +2,14 @@ extends State
 class_name PlayerJump
 
 @onready var player: CharacterBody2D = $"../.."
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func enter():
 	player.velocity.y = player.stats.JUMP_VELOCITY
 	#play jump animation
+	animated_sprite_2d.play("jump")
 
 
 func update(delta: float):
@@ -17,3 +19,7 @@ func update(delta: float):
 	#transition to idle when player hits the ground
 	if player.is_on_floor():
 		state_transition.emit(self, "PlayerLanding")
+
+
+func exit():
+	animated_sprite_2d.stop()

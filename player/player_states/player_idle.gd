@@ -1,9 +1,11 @@
 extends State
 class_name PlayerIdle
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+
 
 func enter():
-	#play idle animation here
+	animated_sprite_2d.play("idle")
 	pass
 
 
@@ -19,3 +21,7 @@ func update(_delta: float):
 	#transition to attacking
 	if Input.is_action_just_pressed("punch"):
 		state_transition.emit(self, "PlayerAttacking")
+
+
+func exit():
+	animated_sprite_2d.stop()
