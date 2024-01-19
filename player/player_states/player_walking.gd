@@ -2,19 +2,21 @@ extends State
 class_name PlayerWalking
 
 @onready var player: CharacterBody2D = $"../.."
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var speed: int
 
 
 func enter():
 	if (
-		(Input.is_action_just_pressed("ui_left") and player.scale.x > 0)
-		or (Input.is_action_just_pressed("ui_right") and player.scale.x < 0)
+		(Input.is_action_pressed("ui_left") and player.scale.x > 0)
+		or (Input.is_action_pressed("ui_right") and player.scale.x < 0)
 	):
 		#play walking backward
-		pass
+		animated_sprite_2d.play("walk_backwards")
+
 	else:
+		animated_sprite_2d.play("walk_forward")
 		#play walking forward
-		pass
 
 	speed = player.stats.MOVE_SPEED
 

@@ -2,11 +2,13 @@ extends State
 class_name PlayerJumpSquat
 
 @onready var player: CharacterBody2D = $"../.."
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var frames_left: int
 
 
 func enter():
 	#play jump squat animation here
+	animated_sprite_2d.play("squat")
 	frames_left = player.stats.JUMP_SQUAT_FRAMES
 
 
@@ -19,3 +21,4 @@ func update(_delta: float):
 
 func exit():
 	frames_left = player.stats.JUMP_SQUAT_FRAMES
+	animated_sprite_2d.stop()
