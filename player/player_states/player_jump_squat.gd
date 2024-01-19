@@ -1,12 +1,13 @@
 extends State
 class_name PlayerJumpSquat
 
-var frames_left = 5
+@onready var player: CharacterBody2D = $"../.."
+var frames_left: int
 
 
 func enter():
 	#play jump squat animation here
-	pass
+	frames_left = player.stats.JUMP_SQUAT_FRAMES
 
 
 func update(_delta: float):
@@ -17,4 +18,4 @@ func update(_delta: float):
 
 
 func exit():
-	frames_left = 5
+	frames_left = player.stats.JUMP_SQUAT_FRAMES
