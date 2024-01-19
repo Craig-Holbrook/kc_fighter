@@ -35,7 +35,7 @@ func update(_delta: float):
 		state_transition.emit(self, "PlayerJumpSquat")
 
 	#transition to idle
-	if not (Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")):
+	if not (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")):
 		state_transition.emit(self, "PlayerIdle")
 
 
