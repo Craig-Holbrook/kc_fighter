@@ -8,8 +8,8 @@ var speed: int
 
 func enter():
 	if (
-		(Input.is_action_pressed("ui_left") and player.scale.x > 0)
-		or (Input.is_action_pressed("ui_right") and player.scale.x < 0)
+		(Input.is_action_pressed("move_left") and player.scale.x > 0)
+		or (Input.is_action_pressed("move_right") and player.scale.x < 0)
 	):
 		#play walking backward
 		animated_sprite_2d.play("walk_backwards")
@@ -22,7 +22,7 @@ func enter():
 
 
 func update(_delta: float):
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		player.velocity.x = direction * speed
 	else:
@@ -31,7 +31,7 @@ func update(_delta: float):
 	player.move_and_slide()
 
 	#transition to jump squat
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("jump"):
 		state_transition.emit(self, "PlayerJumpSquat")
 
 	#transition to idle

@@ -9,7 +9,3 @@ signal health_changed
 	set(value):
 		health = value
 		health_changed.emit(health, 1)
-
-
-func _ready():
-	print(stats.JUMP_SQUAT_FRAMES)

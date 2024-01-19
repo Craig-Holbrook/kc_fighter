@@ -18,9 +18,6 @@ func enter():
 		frames_until_active = player.stats.punch["frames_until_active"]
 		frames_active = player.stats.punch["frames_active"]
 		recovery_frames = player.stats.punch["recovery_frames"]
-		print(frames_until_active)
-		print(frames_active)
-		print(recovery_frames)
 
 
 var frames = 0
@@ -45,5 +42,5 @@ func update(_delta: float):
 
 
 func exit():
-	#print(frames)
+	print(frames)
 	animated_sprite_2d.stop()
