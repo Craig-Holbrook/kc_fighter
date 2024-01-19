@@ -7,7 +7,7 @@ func enter():
 	pass
 
 
-func update(delta: float):
+func update(_delta: float):
 	#transition to walking
 	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
 		state_transition.emit(self, "PlayerWalking")
@@ -15,3 +15,7 @@ func update(delta: float):
 	#transition to jump squat
 	if Input.is_action_just_pressed("ui_accept"):
 		state_transition.emit(self, "PlayerJumpSquat")
+
+	#transition to attacking
+	if Input.is_action_just_pressed("punch"):
+		state_transition.emit(self, "PlayerAttacking")
