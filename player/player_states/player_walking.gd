@@ -1,21 +1,30 @@
 extends State
 class_name PlayerWalking
 
-const SPEED = 150
 @onready var player: CharacterBody2D = $"../.."
+var speed: int
 
 
 func enter():
-	#play walking animation
-	pass
+	if (
+		(Input.is_action_just_pressed("ui_left") and player.scale.x > 0)
+		or (Input.is_action_just_pressed("ui_right") and player.scale.x < 0)
+	):
+		#play walking backward
+		pass
+	else:
+		#play walking forward
+		pass
+
+	speed = player.stats.MOVE_SPEED
 
 
 func update(_delta: float):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		player.velocity.x = direction * SPEED
+		player.velocity.x = direction * speed
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, SPEED)
+		player.velocity.x = move_toward(player.velocity.x, 0, speed)
 
 	player.move_and_slide()
 
