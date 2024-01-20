@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=57 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://byybnvfv6wk1j" path="res://player/attacks/punch.tscn" id="9_gg5at"]
 [ext_resource type="Texture2D" uid="uid://ch0iiwk308p6i" path="res://assets/sprites/guile_sprite_sheet.png" id="9_ngvun"]
 [ext_resource type="Script" path="res://player/player_states/player_attacking.gd" id="9_y1mgd"]
+[ext_resource type="PackedScene" uid="uid://c6pl4aidrmr63" path="res://player/attacks/kick.tscn" id="11_1ie8p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8exgp"]
 radius = 15.0
@@ -250,42 +251,42 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_72mif")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_iff1a")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_4krbp")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_yfejh")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_hrope")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_di7v0")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_reycx")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_tolm1")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_1dm56")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_vt7f0")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_1d2kc")
 }],
 "loop": false,
 "name": &"kick",
-"speed": 10.0
+"speed": 60.0
 }, {
 "frames": [{
 "duration": 6.0,
@@ -372,9 +373,6 @@ animations = [{
 collision_mask = 3
 script = ExtResource("1_q8bkg")
 
-[node name="Punch" parent="." instance=ExtResource("9_gg5at")]
-position = Vector2(32, -24)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_8exgp")
@@ -405,6 +403,10 @@ script = ExtResource("9_y1mgd")
 position = Vector2(0, -16)
 scale = Vector2(0.293103, 0.293103)
 sprite_frames = SubResource("SpriteFrames_kib1k")
-animation = &"punch"
-frame = 6
-frame_progress = 1.0
+animation = &"kick"
+
+[node name="Kick" parent="." instance=ExtResource("11_1ie8p")]
+position = Vector2(24, -24)
+
+[node name="Punch" parent="." instance=ExtResource("9_gg5at")]
+position = Vector2(24, -16)

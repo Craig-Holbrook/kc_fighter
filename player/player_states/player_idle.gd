@@ -10,8 +10,11 @@ func enter():
 
 
 func update(_delta: float):
-	#transition to walking
-	if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+	#transition to walking if only pressing one of the directions
+	if (
+		!(Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"))
+		and (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"))
+	):
 		state_transition.emit(self, "PlayerWalking")
 
 	#transition to jump squat
@@ -19,7 +22,7 @@ func update(_delta: float):
 		state_transition.emit(self, "PlayerJumpSquat")
 
 	#transition to attacking
-	if Input.is_action_just_pressed("punch"):
+	if Input.is_action_just_pressed("punch") or Input.is_action_just_pressed("kick"):
 		state_transition.emit(self, "PlayerAttacking")
 
 

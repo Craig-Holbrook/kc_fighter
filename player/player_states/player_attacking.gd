@@ -18,13 +18,16 @@ func enter():
 		frames_until_active = player.stats.punch["frames_until_active"]
 		frames_active = player.stats.punch["frames_active"]
 		recovery_frames = player.stats.punch["recovery_frames"]
-
-
-var frames = 0
+	if Input.is_action_just_pressed("kick"):
+		#play kick animation
+		animated_sprite_2d.play("kick")
+		hitbox = $"../../Kick/CollisionShape2D"
+		frames_until_active = player.stats.kick["frames_until_active"]
+		frames_active = player.stats.kick["frames_active"]
+		recovery_frames = player.stats.kick["recovery_frames"]
 
 
 func update(_delta: float):
-	frames += 1
 	frames_until_active -= 1
 
 	if frames_until_active == 0:
@@ -42,5 +45,4 @@ func update(_delta: float):
 
 
 func exit():
-	print(frames)
 	animated_sprite_2d.stop()
