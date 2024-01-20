@@ -120,11 +120,11 @@ theme_override_constants/margin_right = 20
 
 [node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
+dragger_visibility = 2
 
 [node name="LeftHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-vertical_alignment = 1
 
 [node name="RightHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
 unique_name_in_owner = true
@@ -133,6 +133,7 @@ horizontal_alignment = 2
 
 [node name="ReadyGo" type="ColorRect" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -155,6 +156,9 @@ text = "READY"
 
 [node name="Player" parent="." instance=ExtResource("2_q4w8h")]
 position = Vector2(56, 128)
+
+[node name="Player2" parent="." instance=ExtResource("2_q4w8h")]
+position = Vector2(276, 130)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
