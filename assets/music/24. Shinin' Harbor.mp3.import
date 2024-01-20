@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://nk483rlnu2hx"
+path="res://.godot/imported/24. Shinin' Harbor.mp3-5a523a6e31a097ec1b5c2d1fb76a4578.mp3str"
+
+[deps]
+
+source_file="res://assets/music/24. Shinin' Harbor.mp3"
+dest_files=["res://.godot/imported/24. Shinin' Harbor.mp3-5a523a6e31a097ec1b5c2d1fb76a4578.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

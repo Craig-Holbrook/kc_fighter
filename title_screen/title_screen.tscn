@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8knu44nawoyn"]
+[gd_scene load_steps=5 format=3 uid="uid://b8knu44nawoyn"]
 
 [ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_b77gv"]
 [ext_resource type="AudioStream" uid="uid://c0vv6ylt68mdh" path="res://assets/music/2-06 All-Star Rest Area.mp3" id="2_oik5l"]
+[ext_resource type="AudioStream" uid="uid://nk483rlnu2hx" path="res://assets/music/24. Shinin' Harbor.mp3" id="3_r4u6a"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_33iyv"]
+streams_count = 2
+stream_0/stream = ExtResource("2_oik5l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_r4u6a")
+stream_1/weight = 1.0
 
 [node name="Node" type="Node"]
 script = ExtResource("1_b77gv")
@@ -30,7 +38,7 @@ layout_mode = 2
 text = "Join"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_oik5l")
+stream = SubResource("AudioStreamRandomizer_33iyv")
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/HostGameButton" to="." method="_on_host_game_button_pressed"]
