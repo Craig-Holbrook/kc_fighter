@@ -288,30 +288,30 @@ animations = [{
 "speed": 10.0
 }, {
 "frames": [{
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_r7uqh")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_txm27")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6hr6t")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sq55s")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_be3in")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ct71l")
 }, {
-"duration": 6.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_f66lh")
 }],
 "loop": false,
 "name": &"punch",
-"speed": 60.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -405,6 +405,4 @@ script = ExtResource("9_y1mgd")
 position = Vector2(0, -16)
 scale = Vector2(0.293103, 0.293103)
 sprite_frames = SubResource("SpriteFrames_kib1k")
-animation = &"punch"
-frame = 6
-frame_progress = 1.0
+animation = &"walk_forward"
