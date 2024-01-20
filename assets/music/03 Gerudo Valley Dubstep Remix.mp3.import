@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://doj1onyp4bque"
+path="res://.godot/imported/03 Gerudo Valley Dubstep Remix.mp3-86db646af63abbc705c4b9922f4a4f89.mp3str"
+
+[deps]
+
+source_file="res://assets/music/03 Gerudo Valley Dubstep Remix.mp3"
+dest_files=["res://.godot/imported/03 Gerudo Valley Dubstep Remix.mp3-86db646af63abbc705c4b9922f4a4f89.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
