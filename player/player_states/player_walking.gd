@@ -34,9 +34,16 @@ func update(_delta: float):
 	if Input.is_action_just_pressed("jump"):
 		state_transition.emit(self, "PlayerJumpSquat")
 
-	#transition to idle
-	if not (Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right")):
+	#transition to idle if no direction is pressed or holding both at the same time
+	if (
+		!(Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"))
+		or (Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"))
+	):
 		state_transition.emit(self, "PlayerIdle")
+
+	#transition to attacking
+	if Input.is_action_just_pressed("punch") or Input.is_action_just_pressed("kick"):
+		state_transition.emit(self, "PlayerAttacking")
 
 
 func exit():
