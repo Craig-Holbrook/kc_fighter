@@ -8,6 +8,7 @@ extends Node2D
 @onready var ready_go: ColorRect = %ReadyGo
 @onready var ready_go_label: Label = %ReadyGoLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var fight_audio_stream_player_2d: AudioStreamPlayer2D = $FightAudioStreamPlayer2D
 
 
 func _ready() -> void:
@@ -15,6 +16,7 @@ func _ready() -> void:
 	polygon_2d.polygon = collision_polygon_2d.polygon
 	update_health_label(player.health, 1)
 	player.health_changed.connect(update_health_label)
+	fight_audio_stream_player_2d.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	get_tree().paused = true
 	ready_go.visible = true
 	animation_player.play("readygo")

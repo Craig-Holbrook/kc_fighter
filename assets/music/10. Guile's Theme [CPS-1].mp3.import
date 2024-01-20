@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bno7kf67220fe"
+path="res://.godot/imported/10. Guile's Theme [CPS-1].mp3-0cdd0223dd13f869e071f3aa8e33f6f6.mp3str"
+
+[deps]
+
+source_file="res://assets/music/10. Guile's Theme [CPS-1].mp3"
+dest_files=["res://.godot/imported/10. Guile's Theme [CPS-1].mp3-0cdd0223dd13f869e071f3aa8e33f6f6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
