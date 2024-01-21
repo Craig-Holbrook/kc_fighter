@@ -100,7 +100,7 @@ _data = {
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2yyd7"]
 streams_count = 3
 stream_0/stream = ExtResource("3_mskak")
-stream_0/weight = 1.0
+stream_0/weight = 1.5
 stream_1/stream = ExtResource("5_iwut2")
 stream_1/weight = 1.0
 stream_2/stream = ExtResource("6_48sj0")
@@ -180,7 +180,9 @@ libraries = {
 [node name="FightAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(102, 68)
 autoplay = true
+bus = &"Sounds"
 
 [node name="RandomStageMusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_2yyd7")
 autoplay = true
+bus = &"Music"
