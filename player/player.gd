@@ -4,6 +4,8 @@ class_name Player
 @onready var state_machine = $PlayerStateMachine as StateMachine
 @onready var stats: PlayerStats = PlayerStats.new()
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
+@onready var kick_sound_player: AudioStreamPlayer2D = $KickSoundPlayer
 
 signal health_changed
 
@@ -16,5 +18,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		health_changed.emit(health)
 		if health == 0:
 			animated_sprite_2d.play("death")
+			kick_sound_player.play()
 		if health <= -1:
 			health_changed.emit("HE MEGA DED")
+			death_sound_player.play()
