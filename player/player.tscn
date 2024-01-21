@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=81 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -7,17 +7,20 @@
 [ext_resource type="Script" path="res://player/player_states/player_jump.gd" id="4_tx1r5"]
 [ext_resource type="Script" path="res://player/player_states/player_jump_squat.gd" id="7_xhjwr"]
 [ext_resource type="Script" path="res://player/player_states/player_landing.gd" id="8_yss7n"]
+[ext_resource type="Script" path="res://player/player_states/player_hit_stun.gd" id="9_4bjuk"]
 [ext_resource type="PackedScene" uid="uid://byybnvfv6wk1j" path="res://player/attacks/punch.tscn" id="9_gg5at"]
 [ext_resource type="Texture2D" uid="uid://ch0iiwk308p6i" path="res://assets/sprites/guile_sprite_sheet.png" id="9_ngvun"]
 [ext_resource type="Script" path="res://player/player_states/player_attacking.gd" id="9_y1mgd"]
+[ext_resource type="Script" path="res://player/player_states/player_death.gd" id="10_3ibbk"]
 [ext_resource type="PackedScene" uid="uid://c6pl4aidrmr63" path="res://player/attacks/kick.tscn" id="11_1ie8p"]
+[ext_resource type="Script" path="res://player/player_states/player_mega_death.gd" id="11_481mr"]
 [ext_resource type="AudioStream" uid="uid://djbybp8xqsidy" path="res://assets/music/bigkicksound.wav" id="12_u3gxr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vv7i3"]
 radius = 16.0312
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8exgp"]
-radius = 15.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_eeu6e"]
+radius = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdp17"]
 atlas = ExtResource("9_ngvun")
@@ -266,71 +269,71 @@ region = Rect2(444, 540, 111, 108)
 [sub_resource type="SpriteFrames" id="SpriteFrames_kib1k"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_wdp17")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_vnvbq")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_gy3ot")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_uabbu")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_su7w5")
 }, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_jaof0")
 }, {
-"duration": 15.0,
+"duration": 90.0,
 "texture": SubResource("AtlasTexture_v7yba")
 }],
 "loop": false,
 "name": &"death",
-"speed": 10.0
+"speed": 60.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_av0g4")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_4flhs")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_uknbm")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_exoch")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_52sl0")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_kw13m")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_s2c3j")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_52sl0")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_q5xyx")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_35anp")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_qnhxg")
 }, {
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_uvcqs")
 }],
 "loop": false,
 "name": &"hit_stun",
-"speed": 10.0
+"speed": 60.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -360,7 +363,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vvp11")
 }],
-"loop": false,
+"loop": true,
 "name": &"idle",
 "speed": 10.0
 }, {
@@ -531,7 +534,7 @@ debug_color = Color(0.956863, 0.109804, 0.458824, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_8exgp")
+shape = SubResource("CircleShape2D_eeu6e")
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_57yuj")
@@ -555,16 +558,24 @@ script = ExtResource("8_yss7n")
 [node name="PlayerAttacking" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_y1mgd")
 
+[node name="PlayerHitStun" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("9_4bjuk")
+
+[node name="PlayerDeath" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("10_3ibbk")
+
+[node name="PlayerMegaDeath" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("11_481mr")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 scale = Vector2(0.293103, 0.293103)
 sprite_frames = SubResource("SpriteFrames_kib1k")
-animation = &"squat"
-frame = 2
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="Kick" parent="." instance=ExtResource("11_1ie8p")]
 position = Vector2(24, -24)
+collision_layer = 2
 
 [node name="Punch" parent="." instance=ExtResource("9_gg5at")]
 position = Vector2(24, -16)
