@@ -14,11 +14,16 @@ signal health_changed
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if not area.get_parent() == self:
+		if health > 0:
+			state_machine.force_change_state("PlayerHitStun")
 		health -= 1
 		health_changed.emit(health)
 		if health == 0:
-			animated_sprite_2d.play("death")
-			kick_sound_player.play()
+			if area.name == "Kick":
+				state_machine.force_change_state("PlayerMegaDeath")
+				kick_sound_player.play()
+			else:
+				state_machine.force_change_state("PlayerDeath")
 		if health <= -1:
 			health_changed.emit("HE MEGA DED")
 			death_sound_player.play()

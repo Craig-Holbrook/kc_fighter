@@ -45,4 +45,5 @@ func update(_delta: float):
 
 
 func exit():
+	hitbox.set_deferred("disabled", true)
 	animated_sprite_2d.stop()
