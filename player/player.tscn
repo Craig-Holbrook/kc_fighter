@@ -520,6 +520,7 @@ data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 format = 1
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
 collision_mask = 3
 script = ExtResource("1_q8bkg")
 
@@ -572,6 +573,12 @@ position = Vector2(0, -16)
 scale = Vector2(0.293103, 0.293103)
 sprite_frames = SubResource("SpriteFrames_kib1k")
 animation = &"idle"
+
+[node name="ShadowPolygon" type="Polygon2D" parent="AnimatedSprite2D"]
+show_behind_parent = true
+color = Color(0, 0, 0, 0.658824)
+antialiased = true
+polygon = PackedVector2Array(-34.1177, 40.9412, -39.2354, 44.353, -40.9412, 47.7648, -37.5295, 52.8824, -29, 54.5883, 35.8236, 54.5883, 42.6471, 51.1765, 44.353, 46.0589, 39.2354, 42.6471, 29, 40.9412)
 
 [node name="Kick" parent="." instance=ExtResource("11_1ie8p")]
 position = Vector2(24, -24)

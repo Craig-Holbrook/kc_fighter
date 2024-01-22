@@ -12,7 +12,6 @@ extends Node2D
 
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(Color.BLACK)
 	polygon_2d.polygon = collision_polygon_2d.polygon
 	update_health_label(player.health)
 	player.health_changed.connect(update_health_label)

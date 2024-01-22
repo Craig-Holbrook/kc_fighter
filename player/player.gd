@@ -6,10 +6,21 @@ class_name Player
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var kick_sound_player: AudioStreamPlayer2D = $KickSoundPlayer
+@onready var player: Player = $"."
 
 signal health_changed
 
 @export var health: int = 3
+
+var margin = 15
+var left_border = 0
+var right_border = ProjectSettings.get_setting("display/window/size/viewport_width")
+
+
+func _process(_delta: float) -> void:
+	player.global_position.x = clamp(
+		player.global_position.x, left_border + margin, right_border - margin
+	)
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
