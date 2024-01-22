@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://qcdkd7pf0qa7"]
+[gd_scene load_steps=14 format=3 uid="uid://qcdkd7pf0qa7"]
 
 [ext_resource type="Script" path="res://stage/stage.gd" id="1_0ot5n"]
 [ext_resource type="AudioStream" uid="uid://bxe864g3m2cby" path="res://assets/music/60 FIGHT!.mp3" id="2_phe67"]
 [ext_resource type="PackedScene" uid="uid://bjc58ru266ooi" path="res://player/player.tscn" id="2_q4w8h"]
+[ext_resource type="Texture2D" uid="uid://cjjlqj34aienc" path="res://assets/sprites/fujipixelart.png" id="2_stpwl"]
 [ext_resource type="AudioStream" uid="uid://bno7kf67220fe" path="res://assets/music/10. Guile's Theme [CPS-1].mp3" id="3_mskak"]
 [ext_resource type="AudioStream" uid="uid://bvi3mvfq782du" path="res://assets/music/02 - To Make The End Of Battle.mp3" id="5_iwut2"]
 [ext_resource type="AudioStream" uid="uid://doj1onyp4bque" path="res://assets/music/03 Gerudo Valley Dubstep Remix.mp3" id="6_48sj0"]
@@ -109,12 +110,27 @@ stream_2/weight = 1.0
 [node name="stage" type="Node2D"]
 script = ExtResource("1_0ot5n")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 320.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("2_stpwl")
+expand_mode = 1
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(0, 0, 16, 0, 16, 128, 304, 128, 304, 0, 320, 0, 320, 184, 0, 184)
+position = Vector2(-8, 56)
+polygon = PackedVector2Array(8, 128, 16, 128, 16, 128, 304, 128, 304, 128, 328, 128, 328, 184, 8, 184)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+visible = false
 texture = SubResource("GradientTexture2D_opl64")
 texture_offset = Vector2(-10, 0)
 
@@ -166,10 +182,10 @@ layout_mode = 2
 text = "READY"
 
 [node name="Player" parent="." instance=ExtResource("2_q4w8h")]
-position = Vector2(56, 128)
+position = Vector2(56, 186)
 
 [node name="Player2" parent="." instance=ExtResource("2_q4w8h")]
-position = Vector2(276, 130)
+position = Vector2(276, 186)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
