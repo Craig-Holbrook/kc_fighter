@@ -2,6 +2,7 @@ extends State
 class_name PlayerIdle
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var player: Player = $"../.."
 
 
 func enter():
@@ -10,6 +11,8 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	#transition to walking if only pressing one of the directions
 	if (
 		!(Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right"))
