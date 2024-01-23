@@ -25,6 +25,14 @@ func update_health_label(new_health: String, player_id: int):
 	else:
 		right_health_number_label.text = new_health
 
+	#if new_health == "0":
+	#reset_game.rpc()
+
+
+@rpc("any_peer", "call_local")
+func reset_game():
+	get_tree().reload_current_scene()
+
 
 func spawn_players():
 	for i in GameManager.players:

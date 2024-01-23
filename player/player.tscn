@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=81 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -18,9 +18,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vv7i3"]
 radius = 16.0312
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_eeu6e"]
-radius = 16.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdp17"]
 atlas = ExtResource("9_ngvun")
@@ -526,11 +523,8 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("AnimatedSprite2D:animation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("AnimatedSprite2D/ShadowPolygon:visible")
-properties/2/spawn = true
-properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["players"]]
 scale = Vector2(2, 2)
 collision_mask = 3
 script = ExtResource("1_q8bkg")
@@ -544,9 +538,10 @@ scale = Vector2(1.01609, -0.872488)
 shape = SubResource("CircleShape2D_vv7i3")
 debug_color = Color(0.956863, 0.109804, 0.458824, 0.419608)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_eeu6e")
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.3, 0.5)
+polygon = PackedVector2Array(0, -40, 26.6667, -16, 0, 16, -26.6667, -16)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_57yuj")

@@ -23,15 +23,25 @@ func _ready():
 	set_multiplayer_authority(id)
 
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	player.global_position.x = clamp(
 		player.global_position.x, left_border + margin, right_border - margin
 	)
 
+	detect_enemy_position()
+
+
+func detect_enemy_position():
+	for player in get_tree().get_nodes_in_group("players"):
+		if player.id != id:
+			var vect = global_position - player.global_position
+			if (vect.x > 0 and facing_right) or (vect.x < 0 and !facing_right):
+				turn_around()
+
 
 func turn_around():
-	scale.x = -2
-	facing_right = false
+	scale.x = -scale.x
+	facing_right = !facing_right
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

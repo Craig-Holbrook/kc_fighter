@@ -8,7 +8,7 @@ class_name PlayerMegaDeath
 
 func enter():
 	animated_sprite_2d.play("death")
-	shadow_polygon.visible = false
+	#shadow_polygon.visible = false
 
 
 func update(_delta: float):
