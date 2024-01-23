@@ -9,10 +9,13 @@ extends Node2D
 @onready var ready_go_label: Label = %ReadyGoLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fight_audio_stream_player_2d: AudioStreamPlayer2D = $FightAudioStreamPlayer2D
+@onready var left_score_label: Label = %LeftScoreLabel
+@onready var right_score_label: Label = %RightScoreLabel
 
 
 func _ready() -> void:
 	polygon_2d.polygon = collision_polygon_2d.polygon
+	player.score_change.connect(update_score_label)
 	update_health_label(player.health)
 	player.health_changed.connect(update_health_label)
 	fight_audio_stream_player_2d.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -26,3 +29,7 @@ func _ready() -> void:
 
 func update_health_label(new_health):
 	right_health_number_label.text = str(new_health)
+
+
+func update_score_label():
+	left_score_label.text = str(left_health_number_label.text.to_int() + 1)

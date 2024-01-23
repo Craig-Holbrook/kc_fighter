@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=85 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -16,11 +16,28 @@
 [ext_resource type="Script" path="res://player/player_states/player_mega_death.gd" id="11_481mr"]
 [ext_resource type="AudioStream" uid="uid://djbybp8xqsidy" path="res://assets/music/bigkicksound.wav" id="12_u3gxr"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vv7i3"]
-radius = 16.0312
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvxck"]
+radius = 10.3337
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eeu6e"]
-radius = 16.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8u5y"]
+atlas = ExtResource("9_ngvun")
+region = Rect2(8, 1507, 88, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv5vc"]
+atlas = ExtResource("9_ngvun")
+region = Rect2(96, 1507, 88, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws5bu"]
+atlas = ExtResource("9_ngvun")
+region = Rect2(31, 2020, 102, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovlxo"]
+atlas = ExtResource("9_ngvun")
+region = Rect2(133, 2020, 102, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5v1i"]
+atlas = ExtResource("9_ngvun")
+region = Rect2(253, 2013, 112, 122)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wdp17"]
 atlas = ExtResource("9_ngvun")
@@ -268,6 +285,26 @@ region = Rect2(444, 540, 111, 108)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kib1k"]
 animations = [{
+"frames": [{
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_q8u5y")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_dv5vc")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_ws5bu")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_ovlxo")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_v5v1i")
+}],
+"loop": false,
+"name": &"air_attack",
+"speed": 60.0
+}, {
 "frames": [{
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_wdp17")
@@ -528,14 +565,14 @@ script = ExtResource("1_q8bkg")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -19)
-scale = Vector2(1.01609, -0.872488)
-shape = SubResource("CircleShape2D_vv7i3")
+position = Vector2(0, -16)
+scale = Vector2(0.9, -1)
+shape = SubResource("CapsuleShape2D_gvxck")
 debug_color = Color(0.956863, 0.109804, 0.458824, 0.419608)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -16)
-shape = SubResource("CircleShape2D_eeu6e")
+polygon = PackedVector2Array(0, 15, -9.5, 0, 0, -15, 9, 0)
 
 [node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_57yuj")
@@ -585,7 +622,7 @@ position = Vector2(24, -24)
 collision_layer = 2
 
 [node name="Punch" parent="." instance=ExtResource("9_gg5at")]
-position = Vector2(24, -16)
+position = Vector2(17.5, -16)
 
 [node name="DeathSoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamWAV_04rjm")

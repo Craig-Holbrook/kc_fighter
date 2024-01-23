@@ -9,6 +9,7 @@ class_name Player
 @onready var player: Player = $"."
 
 signal health_changed
+signal score_change
 
 @export var health: int = 3
 
@@ -30,6 +31,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		health -= 1
 		health_changed.emit(health)
 		if health == 0:
+			score_change.emit()
 			if area.name == "Kick":
 				state_machine.force_change_state("PlayerMegaDeath")
 				kick_sound_player.play()
