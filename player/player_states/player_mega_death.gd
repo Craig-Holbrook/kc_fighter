@@ -12,5 +12,5 @@ func enter():
 
 
 func update(_delta: float):
-	player.velocity = Vector2(1, -1) * 200
+	player.velocity = Vector2(-1, -1) * 200 if player.facing_right else Vector2(1, -1) * 200
 	player.move_and_slide()

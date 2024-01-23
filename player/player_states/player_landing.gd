@@ -2,7 +2,7 @@ extends State
 class_name PlayerLanding
 
 @onready var shadow_polygon: Polygon2D = $"../../AnimatedSprite2D/ShadowPolygon"
-@onready var player: CharacterBody2D = $"../.."
+@onready var player: Player = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var frames_left: int
 
