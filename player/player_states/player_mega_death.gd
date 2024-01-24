@@ -12,5 +12,7 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	player.velocity = Vector2(-1, -1) * 200 if player.facing_right else Vector2(1, -1) * 200
 	player.move_and_slide()

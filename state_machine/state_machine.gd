@@ -27,13 +27,14 @@ func trigger_change_state(source_state: State, new_state_name: String):
 	if source_state != current_state:
 		return
 
-	state_change(new_state_name)
+	state_change.rpc(new_state_name)
 
 
 func trigger_force_change_state(new_state_name: String):
 	state_change(new_state_name)
 
 
+@rpc("any_peer", "call_local")
 func state_change(new_state_name: String):
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:

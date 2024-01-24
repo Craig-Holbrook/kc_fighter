@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=87 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -10,10 +10,11 @@
 [ext_resource type="Script" path="res://player/player_states/player_hit_stun.gd" id="9_4bjuk"]
 [ext_resource type="PackedScene" uid="uid://byybnvfv6wk1j" path="res://player/attacks/punch.tscn" id="9_gg5at"]
 [ext_resource type="Texture2D" uid="uid://ch0iiwk308p6i" path="res://assets/sprites/guile_sprite_sheet.png" id="9_ngvun"]
-[ext_resource type="Script" path="res://player/player_states/player_attacking.gd" id="9_y1mgd"]
+[ext_resource type="Script" path="res://player/player_states/player_kick.gd" id="9_y1mgd"]
 [ext_resource type="Script" path="res://player/player_states/player_death.gd" id="10_3ibbk"]
 [ext_resource type="PackedScene" uid="uid://c6pl4aidrmr63" path="res://player/attacks/kick.tscn" id="11_1ie8p"]
 [ext_resource type="Script" path="res://player/player_states/player_mega_death.gd" id="11_481mr"]
+[ext_resource type="Script" path="res://player/player_states/player_punch.gd" id="12_klfxe"]
 [ext_resource type="AudioStream" uid="uid://djbybp8xqsidy" path="res://assets/music/bigkicksound.wav" id="12_u3gxr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvxck"]
@@ -560,9 +561,6 @@ format = 1
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("AnimatedSprite2D:animation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 scale = Vector2(2, 2)
@@ -602,7 +600,7 @@ script = ExtResource("7_xhjwr")
 [node name="PlayerLanding" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_yss7n")
 
-[node name="PlayerAttacking" type="Node" parent="PlayerStateMachine"]
+[node name="PlayerKick" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_y1mgd")
 
 [node name="PlayerHitStun" type="Node" parent="PlayerStateMachine"]
@@ -613,6 +611,9 @@ script = ExtResource("10_3ibbk")
 
 [node name="PlayerMegaDeath" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("11_481mr")
+
+[node name="PlayerPunch" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("12_klfxe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

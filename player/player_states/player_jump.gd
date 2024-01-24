@@ -8,7 +8,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func enter():
-	print("enter jump state")
 	player.velocity.y = player.stats.JUMP_VELOCITY
 	#play jump animation
 	animated_sprite_2d.play("jump")
@@ -16,6 +15,8 @@ func enter():
 
 
 func update(delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	player.velocity.y += gravity * delta
 	player.move_and_slide()
 

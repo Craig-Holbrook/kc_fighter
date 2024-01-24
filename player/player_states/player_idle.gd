@@ -7,7 +7,6 @@ class_name PlayerIdle
 
 func enter():
 	animated_sprite_2d.play("idle")
-	pass
 
 
 func update(_delta: float):
@@ -25,8 +24,11 @@ func update(_delta: float):
 		state_transition.emit(self, "PlayerJumpSquat")
 
 	#transition to attacking
-	if Input.is_action_just_pressed("punch") or Input.is_action_just_pressed("kick"):
-		state_transition.emit(self, "PlayerAttacking")
+	if Input.is_action_just_pressed("punch"):
+		state_transition.emit(self, "PlayerPunch")
+
+	if Input.is_action_just_pressed("kick"):
+		state_transition.emit(self, "PlayerKick")
 
 
 func exit():
