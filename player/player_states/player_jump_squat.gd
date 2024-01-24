@@ -1,7 +1,7 @@
 extends State
 class_name PlayerJumpSquat
 
-@onready var player: CharacterBody2D = $"../.."
+@onready var player: Player = $"../.."
 @onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
 var frames_left: int
 

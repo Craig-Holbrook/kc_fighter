@@ -10,7 +10,7 @@ func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
-			child.state_transition.connect(change_state)
+			child.state_transition.connect(trigger_change_state)
 
 	if initial_state:
 		initial_state.enter()
@@ -23,22 +23,18 @@ func _physics_process(delta):
 		current_state.update(delta)
 
 
-func change_state(source_state: State, new_state_name: String):
+func trigger_change_state(source_state: State, new_state_name: String):
 	if source_state != current_state:
 		return
 
-	var new_state = states.get(new_state_name.to_lower())
-	if !new_state:
-		return
-
-	if current_state:
-		current_state.exit()
-
-	new_state.enter()
-	current_state = new_state
+	state_change(new_state_name)
 
 
-func force_change_state(new_state_name: String):
+func trigger_force_change_state(new_state_name: String):
+	state_change(new_state_name)
+
+
+func state_change(new_state_name: String):
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
 		return
