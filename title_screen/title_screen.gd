@@ -66,9 +66,7 @@ func connection_failed():
 @rpc("any_peer")
 func send_player_information(id):
 	if !GameManager.players.has(id):
-		GameManager.players[id] = {
-			"id": id,
-		}
+		GameManager.players[id] = {"id": id, "score": 0}
 	if multiplayer.is_server():
 		for i in GameManager.players:
 			send_player_information.rpc(i)

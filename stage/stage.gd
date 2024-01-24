@@ -27,13 +27,28 @@ func update_health_label(new_health: String, player_id: int):
 	else:
 		right_health_number_label.text = new_health
 
-	#if new_health == "0":
-	#reset_game.rpc()
+
+func update_score_label(player_id: int):
+	if player_id == 1:
+		left_score_label.text = str(GameManager.players[player_id].score)
+	else:
+		right_score_label.text = str(GameManager.players[player_id].score)
+
+
+func game_over():
+	await get_tree().create_timer(3.0).timeout
+	reset_game.rpc()
 
 
 @rpc("any_peer", "call_local")
 func reset_game():
-	get_tree().reload_current_scene()
+	call_deferred("restart_stage")
+
+
+func restart_stage():
+	var stage = load("res://stage/stage.tscn").instantiate()
+	get_tree().root.add_child(stage)
+	get_tree().root.remove_child(self)
 
 
 func spawn_players():
@@ -41,6 +56,8 @@ func spawn_players():
 		var current_player: Player = load("res://player/player.tscn").instantiate()
 		current_player.id = GameManager.players[i].id
 		current_player.health_changed.connect(update_health_label)
+		current_player.score_changed.connect(update_score_label)
+		current_player.game_ended.connect(game_over)
 		add_child(current_player)
 		if current_player.id == 1:
 			current_player.global_position = spawn_1.global_position
@@ -56,8 +73,3 @@ func start_round():
 	await animation_player.animation_finished
 	get_tree().paused = false
 	ready_go.visible = false
-
-
-func update_score_label():
-	left_score_label.text = str(left_health_number_label.text.to_int() + 1)
-

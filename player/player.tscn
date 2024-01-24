@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://bjc58ru266ooi"]
+[gd_scene load_steps=86 format=3 uid="uid://bjc58ru266ooi"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_q8bkg"]
 [ext_resource type="Script" path="res://state_machine/state_machine.gd" id="3_57yuj"]
@@ -18,7 +18,6 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gvxck"]
 radius = 10.3337
-
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q8u5y"]
 atlas = ExtResource("9_ngvun")
