@@ -22,6 +22,8 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		player.velocity.x = direction * speed
@@ -42,9 +44,8 @@ func update(_delta: float):
 		state_transition.emit(self, "PlayerIdle")
 
 	#transition to attacking
-	if Input.is_action_just_pressed("punch") or Input.is_action_just_pressed("kick"):
-		state_transition.emit(self, "PlayerAttacking")
+	if Input.is_action_just_pressed("punch"):
+		state_transition.emit(self, "PlayerPunch")
 
-
-func exit():
-	pass
+	if Input.is_action_just_pressed("kick"):
+		state_transition.emit(self, "PlayerKick")

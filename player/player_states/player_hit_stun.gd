@@ -12,6 +12,8 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	player.velocity.x = -40 if player.facing_right else 40
 	player.move_and_slide()
 	hit_stun_duration -= 1

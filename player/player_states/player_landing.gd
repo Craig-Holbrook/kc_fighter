@@ -16,6 +16,8 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	frames_left -= 1
 	if frames_left == 0:
 		state_transition.emit(self, "PlayerIdle")

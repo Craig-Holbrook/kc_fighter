@@ -13,6 +13,8 @@ func enter():
 
 
 func update(_delta: float):
+	if !player.is_multiplayer_authority():
+		return
 	#wait frames_left frames then transition to jump
 	frames_left -= 1
 	if frames_left == 0:
