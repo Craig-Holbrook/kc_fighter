@@ -2,15 +2,14 @@ extends CharacterBody2D
 class_name Player
 
 signal health_changed
-signal score_change
+signal score_changed
+signal game_ended
 
 @onready var state_machine = $PlayerStateMachine as StateMachine
 @onready var stats: PlayerStats = PlayerStats.new()
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var kick_sound_player: AudioStreamPlayer2D = $KickSoundPlayer
-@onready var player: Player = $"."
-
 
 @export var health: int = 3
 
@@ -23,13 +22,11 @@ var facing_right = true
 
 func _ready():
 	set_multiplayer_authority(id)
+	score_changed.emit(id)
 
 
 func _physics_process(_delta: float) -> void:
-	player.global_position.x = clamp(
-		player.global_position.x, left_border + margin, right_border - margin
-	)
-
+	global_position.x = clamp(global_position.x, left_border + margin, right_border - margin)
 	detect_enemy_position()
 
 
@@ -58,7 +55,7 @@ func player_hit(area_name: String):
 	health -= 1
 	health_changed.emit(str(health), id)
 	if health == 0:
-  		score_change.emit()
+		update_score_for_winner.rpc()
 		if area_name == "Kick":
 			state_machine.trigger_force_change_state("PlayerMegaDeath")
 			kick_sound_player.play()
@@ -68,3 +65,11 @@ func player_hit(area_name: String):
 		health_changed.emit("HE MEGA DED", id)
 		death_sound_player.play()
 
+
+@rpc("any_peer")
+func update_score_for_winner():
+	for player in get_tree().get_nodes_in_group("players"):
+		if player.id != id:
+			GameManager.players[player.id].score += 1
+			score_changed.emit(player.id)
+			game_ended.emit()
