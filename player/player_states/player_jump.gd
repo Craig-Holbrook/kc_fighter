@@ -13,6 +13,9 @@ func enter():
 	animated_sprite_2d.play("jump")
 	shadow_polygon.visible = false
 
+	player.collision_layer = 8
+	player.collision_mask = 3
+
 
 func update(delta: float):
 	if !player.is_multiplayer_authority():
@@ -27,4 +30,6 @@ func update(delta: float):
 
 func exit():
 	animated_sprite_2d.stop()
+	player.collision_layer = 9
+	player.collision_mask = 11
 	pass
