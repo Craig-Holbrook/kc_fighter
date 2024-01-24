@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal health_changed
+signal score_change
 
 @onready var state_machine = $PlayerStateMachine as StateMachine
 @onready var stats: PlayerStats = PlayerStats.new()
@@ -9,6 +10,7 @@ signal health_changed
 @onready var death_sound_player: AudioStreamPlayer2D = $DeathSoundPlayer
 @onready var kick_sound_player: AudioStreamPlayer2D = $KickSoundPlayer
 @onready var player: Player = $"."
+
 
 @export var health: int = 3
 
@@ -56,6 +58,7 @@ func player_hit(area_name: String):
 	health -= 1
 	health_changed.emit(str(health), id)
 	if health == 0:
+  		score_change.emit()
 		if area_name == "Kick":
 			state_machine.trigger_force_change_state("PlayerMegaDeath")
 			kick_sound_player.play()
@@ -64,3 +67,4 @@ func player_hit(area_name: String):
 	if health <= -1:
 		health_changed.emit("HE MEGA DED", id)
 		death_sound_player.play()
+

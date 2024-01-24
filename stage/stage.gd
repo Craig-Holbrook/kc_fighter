@@ -8,6 +8,8 @@ extends Node2D
 @onready var ready_go_label: Label = %ReadyGoLabel
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var fight_audio_stream_player_2d: AudioStreamPlayer2D = $FightAudioStreamPlayer2D
+@onready var left_score_label: Label = %LeftScoreLabel
+@onready var right_score_label: Label = %RightScoreLabel
 @onready var spawn_1 = $Spawn1
 @onready var spawn_2 = $Spawn2
 
@@ -54,3 +56,8 @@ func start_round():
 	await animation_player.animation_finished
 	get_tree().paused = false
 	ready_go.visible = false
+
+
+func update_score_label():
+	left_score_label.text = str(left_health_number_label.text.to_int() + 1)
+
