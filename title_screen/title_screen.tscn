@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8knu44nawoyn"]
+
+[ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_b77gv"]
+[ext_resource type="AudioStream" uid="uid://c0vv6ylt68mdh" path="res://assets/music/2-06 All-Star Rest Area.mp3" id="2_oik5l"]
+[ext_resource type="AudioStream" uid="uid://nk483rlnu2hx" path="res://assets/music/24. Shinin' Harbor.mp3" id="3_r4u6a"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_33iyv"]
+streams_count = 2
+stream_0/stream = ExtResource("2_oik5l")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_r4u6a")
+stream_1/weight = 1.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b77gv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_right = 39.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "KC Fighter"
+
+[node name="HostGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="JoinGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_33iyv")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/HostGameButton" to="." method="_on_host_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/JoinGameButton" to="." method="_on_join_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]

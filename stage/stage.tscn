@@ -1,0 +1,231 @@
+[gd_scene load_steps=13 format=3 uid="uid://qcdkd7pf0qa7"]
+
+[ext_resource type="Script" path="res://stage/stage.gd" id="1_0ot5n"]
+[ext_resource type="AudioStream" uid="uid://bxe864g3m2cby" path="res://assets/music/60 FIGHT!.mp3" id="2_phe67"]
+[ext_resource type="Texture2D" uid="uid://cjjlqj34aienc" path="res://assets/sprites/fujipixelart.png" id="2_stpwl"]
+[ext_resource type="AudioStream" uid="uid://bno7kf67220fe" path="res://assets/music/10. Guile's Theme [CPS-1].mp3" id="3_mskak"]
+[ext_resource type="AudioStream" uid="uid://bvi3mvfq782du" path="res://assets/music/02 - To Make The End Of Battle.mp3" id="5_iwut2"]
+[ext_resource type="AudioStream" uid="uid://doj1onyp4bque" path="res://assets/music/03 Gerudo Valley Dubstep Remix.mp3" id="6_48sj0"]
+
+[sub_resource type="Gradient" id="Gradient_7bw18"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0.909804, 0.23665, 0.179464, 0, 0.792157, 0, 0, 0, 0.815686)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_opl64"]
+gradient = SubResource("Gradient_7bw18")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+metadata/_snap_count = 12
+
+[sub_resource type="Animation" id="Animation_8hhnv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ReadyGo/CenterContainer/ReadyGoLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["READY"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ReadyGo:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0.00392157, 0.686275)]
+}
+
+[sub_resource type="Animation" id="Animation_bl82b"]
+resource_name = "readygo"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ReadyGo/CenterContainer/ReadyGoLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["READY", "GO!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/ReadyGo:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.00392157, 0.792157), Color(0, 0, 0.00392157, 0)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FightAudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 5.82,
+"start_offset": 0.0,
+"stream": ExtResource("2_phe67")
+}],
+"times": PackedFloat32Array(0.9)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yq5ng"]
+_data = {
+"RESET": SubResource("Animation_8hhnv"),
+"readygo": SubResource("Animation_bl82b")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_2yyd7"]
+streams_count = 3
+stream_0/stream = ExtResource("3_mskak")
+stream_0/weight = 1.5
+stream_1/stream = ExtResource("5_iwut2")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("6_48sj0")
+stream_2/weight = 1.0
+
+[node name="stage" type="Node2D"]
+script = ExtResource("1_0ot5n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = 320.0
+offset_bottom = 184.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+texture = ExtResource("2_stpwl")
+expand_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-8, 56)
+polygon = PackedVector2Array(8, 128, 16, 128, 16, 128, 304, 128, 304, 128, 328, 128, 328, 184, 8, 184)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
+visible = false
+texture = SubResource("GradientTexture2D_opl64")
+texture_offset = Vector2(-10, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="LeftHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+
+[node name="RightHealthNumberLabel" type="Label" parent="CanvasLayer/MarginContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "3"
+horizontal_alignment = 2
+
+[node name="ReadyGo" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.00392157, 0.686275)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/ReadyGo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReadyGoLabel" type="Label" parent="CanvasLayer/ReadyGo/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "READY"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 120
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/MarginContainer2"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="LeftScoreLabel" type="Label" parent="CanvasLayer/MarginContainer2/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.298039, 0.964706, 0.0784314, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+
+[node name="RightScoreLabel" type="Label" parent="CanvasLayer/MarginContainer2/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.298039, 0.964706, 0.0784314, 1)
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_yq5ng")
+}
+
+[node name="FightAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(102, 68)
+bus = &"Sounds"
+
+[node name="RandomStageMusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_2yyd7")
+bus = &"Music"
+
+[node name="Spawn1" type="Node2D" parent="." groups=["spawn_points"]]
+position = Vector2(64, 184)
+
+[node name="Spawn2" type="Node2D" parent="." groups=["spawn_points"]]
+position = Vector2(256, 184)
