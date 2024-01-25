@@ -620,7 +620,7 @@ script = ExtResource("12_klfxe")
 position = Vector2(0, -16)
 scale = Vector2(0.293103, 0.293103)
 sprite_frames = SubResource("SpriteFrames_kib1k")
-animation = &"walk_forward"
+animation = &"idle"
 
 [node name="ShadowPolygon" type="Polygon2D" parent="AnimatedSprite2D"]
 show_behind_parent = true

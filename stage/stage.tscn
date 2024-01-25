@@ -222,7 +222,6 @@ bus = &"Sounds"
 
 [node name="RandomStageMusicPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_2yyd7")
-autoplay = true
 bus = &"Music"
 
 [node name="Spawn1" type="Node2D" parent="." groups=["spawn_points"]]

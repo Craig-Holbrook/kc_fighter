@@ -13,12 +13,12 @@ func enter():
 	):
 		#play walking backward
 		animated_sprite_2d.play("walk_backwards")
-		speed = player.stats.MOVE_BACKWARD_SPEED
 
 	else:
 		animated_sprite_2d.play("walk_forward")
-		speed = player.stats.MOVE_FOWARD_SPEED
 		#play walking forward
+
+	speed = player.stats.MOVE_SPEED
 
 
 func update(_delta: float):
