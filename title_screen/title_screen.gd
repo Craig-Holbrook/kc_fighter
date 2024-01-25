@@ -1,7 +1,7 @@
 extends Control
 
 const PORT = 808
-const ADDRESS = "localhost"
+const ADDRESS = "71.172.7.224"
 var peer: ENetMultiplayerPeer
 
 
