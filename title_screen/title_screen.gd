@@ -1,7 +1,8 @@
 extends Control
+@onready var line_edit: LineEdit = $VBoxContainer/LineEdit
 
 const PORT = 808
-const ADDRESS = "71.172.7.224"
+var address = "localhost"
 var peer: ENetMultiplayerPeer
 
 
@@ -24,8 +25,9 @@ func _on_host_game_button_pressed():
 
 
 func _on_join_game_button_pressed():
+	address = line_edit.text
 	peer = ENetMultiplayerPeer.new()
-	peer.create_client(ADDRESS, PORT)
+	peer.create_client(address, PORT)
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.multiplayer_peer = peer
 
